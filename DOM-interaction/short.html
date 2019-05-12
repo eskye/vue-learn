@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue Short hand</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div id="app">
+        <button @click="changeLink">Click to Change Link</button>
+        <a :href="link">Link</a>
+
+        <p></p>
+        <div class="demo" @click.prevent="attachRed = !attachRed" :class="{red:attachRed, blue: !attachRed}"></div>
+        <div class="demo" :class="{red:attachRed}"></div>
+        <div class="demo" :class="divClasses"></div>
+        <div class="demo" :class="[color, {red: attachRed}]"></div>
+        <hr />
+        <input type="text" v-model="color">
+        <hr />
+        <h2>Using CSS dynamically with class</h2>
+        <div class="demo" :style="{'background-color':bgColor}"></div>
+        <div class="demo" :style="myStyle"></div>
+        <div class="demo" :style="[myStyle,{height:width +'px'}]"></div>
+
+        <input type="text" v-model="bgColor">
+        <input type="number" v-model="width">
+     
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                attachRed: false,
+                link: '',
+                color: 'green',
+                bgColor: 'gray',
+                width: 100
+            },
+            computed: {
+                divClasses: function () {
+                    return {
+                        red: this.attachRed,
+                        blue: !this.attachRed
+                    }
+                },
+
+                myStyle: function(){
+                    return {
+                        backgroundColor: this.bgColor,
+                        width:this.width + 'px'
+                    }
+                }
+            },
+
+            methods: {
+                changeLink: function () {
+
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
