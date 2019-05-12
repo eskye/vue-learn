@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Vue learning curve</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+        <!-- STOPPED:: lesson 10 of chapter 2 -->
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="app">
+            <h1 v-once>{{title}}</h1>
+            <p>{{sayHello()}} - <a v-bind:href="link">Google</a></p>
+            <hr>
+            <p v-html="finishedLink"></p>
+        
+            <p v-on:mousemove="updateCoordinates">Coordinates: {{x}} / {{y}}
+                -<span v-on:mousemove.stop="">Dead Spot</span>
+            </p>
+            <button v-on:click="increase(2, $event)">Click Me ++</button>
+            <h3>Write javascript code in template</h3>
+            <button v-on:click="counter++">Click Me</button>
+            <h2>{{counter * 2}}</h2>
+            <h2>{{counter * 2 > 10 ?'Greater than 10': 'smaller than 10'}}</h2>
+            <p>
+                <h2>Keyboard Events</h2>
+                <input type="text" v-on:keyup.enter.space="alertMe" />
+            </p>
+            <p>
+                <h2>Two way data binding</h2>
+                <input type="text" v-model="name" />
+                <h5>{{name}}</h5>
+            </p>
+            <p>
+                <h2>Reaction to computed Method</h2>
+                <button v-on:click="incounter++">Increase</button>
+                <button v-on:click="incounter--">Decrease</button>
+                <button v-on:click="secondCounter++">Increase Second</button>
+                <p>{{incounter}} | {{secondCounter}}</p>
+                <p>{{result() }} | {{output}}</p>
+          
+            </p>
+        </div>
+        <script src="js/vue.js"></script>
+        <script>
+            
+        new Vue({
+            el:'#app',
+            data:{
+                title:'Hello World',
+                link:'http://google.com',
+                finishedLink: '<a href="http://google.com">Google</a>',
+                counter: 0,
+                x: 0,
+                y: 0,
+                name: 'Max',
+                incounter: 0,
+                secondCounter:0
+            },
+            computed:{
+              output: function(){
+                 return this.incounter > 5 ? 'Greater than 5':'Smaller than 5';
+              }
+            },
+            watch: {
+                incounter: function(value){
+                    var vm = this;
+                    setTimeout(function(){
+                       vm.incounter = 0;
+                    }, 2000);
+                }
+            },
+            methods:{
+                result: function(){
+                    return this.incounter > 5 ?'Greater than 5':'Smaller than 5';
+                },
+                sayHello: function(){
+                    this.title = 'Hello';
+                    return this.title;
+                },
+
+                increase: function(step, event){
+                   this.counter += step;
+                },
+                updateCoordinates: function(event){
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                alertMe:function(){
+                    alert('Alert me');
+                }
+
+            }
+        });
+        </script>
+    </body>
+</html>
