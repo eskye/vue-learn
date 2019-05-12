@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Condition and RenderList</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="app">
+            <h1>Using v-if</h1>
+            <p v-if="show">You can see me!</p>
+            <p v-else>Now you see me</p>
+            <p v-if="!show">Do you also see me!</p>
+            <button @click="show = !show">switch</button>
+            <hr/>
+            <h2>Alternative to v-if using html5 template</h2>
+            <template v-if="show">
+                <h1>Heading</h1>
+                <p>Inside a template</p>
+            </template>
+            <p v-show="show">Using <code>v-show</code> in vue js</p>
+        </div>
+        <script src="../js/vue.js"></script>
+        <script>
+            new Vue({
+                el:'#app',
+                data:{
+                    show: true 
+                },
+                methods: {
+                    
+                },
+            })
+        </script>
+    </body>
+</html>
