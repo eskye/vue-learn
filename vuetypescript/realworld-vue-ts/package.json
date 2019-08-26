@@ -1,0 +1,12 @@
+{
+  "name": "realworld-vue-ts",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-typescript": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^3.11.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.11.0",
+    "@vue/cli-service": "^3.11.0"
+  }
+}
